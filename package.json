@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --inline --config build/webpack.config.js --content-base build --open"
+    "dev": "webpack-dev-server --inline --config build/webpack.config.js --content-base build --open --port=8182"
   },
   "repository": {
     "type": "git",
