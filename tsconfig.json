@@ -15,6 +15,7 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
     "noUnusedLocals": true
   },
   "exclude": [
