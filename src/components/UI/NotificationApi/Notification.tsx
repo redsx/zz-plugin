@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
-
+import TransitionGroup  from 'react-transition-group/TransitionGroup';
+import CSSTransition from 'react-transition-group/CSSTransition';
 import Notice from './Notice';
 
 function getUuid() {
@@ -14,39 +15,32 @@ export default class Notification extends Component<any, any> {
       notices: [],
     };
   }
-  unmount: boolean = false;
-  componentDidMount() {
-    this.unmount = true;
-    this.add({
-      duration: 100,
-      content: <div>addd</div>,
-    });
-  }
-  componentWillUnmount() {
-    this.unmount = false;
-  }
   public render(): JSX.Element {
-    // const { className } = this.props;
-    console.log('this.state: ', this.state);
+    const { className } = this.props;
     return (
-      <div className = {'className'}>
+      <TransitionGroup className={className}>
         {
           this.state.notices.map((notice, index) => {
-            console.log('notice: ', notice, index);
             return (
-              <Notice
-                onClose = {notice.onClose}
-                duration = {notice.duration}
-                style = {notice.style}
-                className = {notice.className}
-                key = {index}
+              <CSSTransition
+                timeout = {500}
+                classNames= {className}
+                key = {notice.key}
               >
-                {notice.content}
-              </Notice>
+                <Notice
+                  className = {notice.className}
+                  duration = {notice.duration}
+                  onClose = {notice.onClose}
+                  onEnd = {() => this.remove(notice.key)}
+                  style = {notice.style}
+                >
+                  {notice.content}
+                </Notice>
+              </CSSTransition>
             );
           })
         }
-      </div>
+      </TransitionGroup>
     );
   }
   public newInstance(props = {}) {
@@ -55,9 +49,7 @@ export default class Notification extends Component<any, any> {
     const notification = render(<Notification {...props}/>, div) as Notification;
     return  {
       component: notification,
-      add: function(props){
-        notification.add(props);
-      },
+      add: notification.add.bind(notification),
       remove: notification.remove.bind(notification),
       destroy() {
         unmountComponentAtNode(div);
@@ -66,8 +58,7 @@ export default class Notification extends Component<any, any> {
     };
   }
   public add(notice: any): void {
-    const key: string = notice.key || getUuid();
-    console.log(this.unmount);
+    const key: string = notice.key = notice.key || getUuid();
     const notices = this.state.notices;
     if (!(notices.filter(item => item.key === key)).length) {
       this.setState({

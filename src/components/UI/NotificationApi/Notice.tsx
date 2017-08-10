@@ -7,6 +7,7 @@ interface StyleInterface {
 
 interface NoticeProps {
   onClose: () => void;
+  onEnd: () => void;
   duration: number;
   style: StyleInterface;
   className: string;
@@ -17,6 +18,7 @@ export default class extends Component<NoticeProps, any> {
   timer: number | null = null;
   static defaultProps = {
     onClose() {},
+    onEnd() {},
     duration: 1.5,
     className: '',
     style: {
@@ -52,8 +54,8 @@ export default class extends Component<NoticeProps, any> {
     );
   }
   private _close(): any {
-    // this.setState({close})
     this.clearTimer();
+    this.props.onEnd();
     this.props.onClose();
   }
   clearTimer() {
