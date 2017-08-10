@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import messageApi from './components/UI/NotificationApi';
+import './less';
 
 interface IAppProps {
   foo: string;
@@ -10,10 +11,13 @@ interface IAppProps {
 class App extends Component<IAppProps, any> {
   public render(): JSX.Element {
     return (
-      <div onClick={messageApi.open}>
-        Hello typescript
-      </div>
+      <button onClick={this.handleClick}>
+        弹出全局提醒
+      </button>
     );
+  }
+  handleClick(): void {
+    messageApi.open({message: '弹出全局提醒'});
   }
 }
 render(

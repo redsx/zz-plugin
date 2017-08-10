@@ -6,7 +6,7 @@ const config = {
     publicPath: '/assets'
   },
   devtool: 'source-map',
-  watch:true,
+  watch: true,
   resolve: {
     extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js']
   },
@@ -14,20 +14,26 @@ const config = {
     loaders: [
       {
         test: /\.(ts|tsx)?$/,
-        loader: 'babel-loader!ts-loader',
+        loader: 'babel-loader!ts-loader'
       }, {
         test: /\.js$/,
         loader: 'source-map-loader',
         enforce: 'pre'
       }, {
-        test: /\.(ts|tsx)$/, 
+        test: /\.(ts|tsx)$/,
         enforce: 'pre',
         exclude: /node_modules/,
-        loader: 'tslint-loader',
+        loader: 'tslint-loader'
+      }, {
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'less-loader'
+        ]
       }
-    ],
-  },
-  devtool: 'eval'
+    ]
+  }
 }
 
 module.exports = config

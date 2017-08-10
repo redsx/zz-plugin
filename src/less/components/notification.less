@@ -1,0 +1,42 @@
+@notification-prefix-cls: notification-prefix;
+@zindex-notification: 99;
+@notification-width: 500px;
+
+.@{notification-prefix-cls} {
+  position: fixed;
+  z-index: @zindex-notification;
+  width: @notification-width;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  top: 0px;
+  left: 50%;
+  margin-left: -@notification-width/2;
+  &-notice {
+    text-align: center;
+    background: #fff;
+    border-radius: 3px;
+    padding: 5px 10px;
+    box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.11);
+  }
+  &-notice-container {
+    text-align: center;
+    margin: 20px 0px;
+  }
+  &-enter {
+     opacity: 0.01;
+     transform: translateY(-20px);
+  }
+  &-exit {
+    opacity: 1;
+  }
+  &-enter&-enter-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 200ms;
+  }
+
+  &-exit&-exit-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }
+}
