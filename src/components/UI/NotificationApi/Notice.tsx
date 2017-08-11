@@ -21,9 +21,6 @@ export default class extends Component<NoticeProps, any> {
     onEnd() {},
     duration: 1.5,
     className: '',
-    style: {
-      right: '50%'
-    }
   };
   constructor(props) {
     super(props);

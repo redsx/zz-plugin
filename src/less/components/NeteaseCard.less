@@ -1,0 +1,49 @@
+@neteaseCard: NeteaseCard;
+
+.@{neteaseCard} {
+  position: fixed;
+  font-size: 14px;
+  width: 373px;
+  height: 136px;
+  background: #f7f4f4;
+  display: flex;
+  border-radius: 4px;
+  &-img-container {
+    width: 126px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+  &-img {
+    width: 100%;
+    display: block;
+  }
+  &-content {
+    color: #969696;
+    padding: 10px;
+    flex-grow: 1;
+  }
+  &-info {
+    padding: 10px 0px 15px 0px;
+    border-bottom: 1px solid #ccc;
+  }
+  &-h2 {
+    font-size: 16px;
+    color: #000;
+    font-weight: 500;
+    margin-bottom: 5px
+  }
+  &-ctrl {
+    color: #666;
+    font-size: 25px;
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-around;
+    align-items: center;
+  }
+  &-play {
+    font-size: 30px;
+  }
+}
