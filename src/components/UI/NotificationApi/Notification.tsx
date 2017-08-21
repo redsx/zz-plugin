@@ -57,7 +57,7 @@ export default class Notification extends Component<any, any> {
       },
     };
   }
-  public add(notice: any): void {
+  public add(notice: any): string {
     const key: string = notice.key = notice.key || getUuid();
     const notices = this.state.notices;
     if (!(notices.filter(item => item.key === key)).length) {
@@ -65,6 +65,7 @@ export default class Notification extends Component<any, any> {
         notices: notices.concat(notice),
       });
     }
+    return key;
   }
   public remove(key: string): void {
     const notices = this.state.notices.filter(notice => notice.key !== key);
